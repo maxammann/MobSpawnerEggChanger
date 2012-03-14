@@ -1,0 +1,8 @@
+name: MobSpawnerEggChanger
+main: me.p000ison.MobSpawnerEggChanger.MobSpawnerEggChanger
+version: 0.1
+author: p000ison
+permissions:
+    sec.spawnerchange:
+        description: Allows you to change MobSpawner Type.
+        default: op
