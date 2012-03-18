@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
     <groupId>me.p000ison</groupId>
-    <artifactId>MobSpawnerEggChanger</artifactId>
-    <name>MobSpawnerEggChanger</name>
+    <artifactId>MobSpawnerEggChange</artifactId>
+    <name>MobSpawnerEggChange</name>
 	<url>http://www.bukkit.org</url>
 
 	<build>
@@ -40,7 +40,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>				
                 <configuration>
-					<outputDirectory>${basedir}/src/main/java/bin</outputDirectory>
+                    <outputDirectory>${basedir}/out/</outputDirectory>
                     <archive>
                         <manifestEntries>
                             <Implementation-Title>${project.name}</Implementation-Title>
@@ -87,5 +87,5 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <version>0.0.1</version>
+    <version>0.1</version>
 </project>
