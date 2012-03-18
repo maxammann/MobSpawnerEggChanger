@@ -26,7 +26,7 @@ public class SECPlayerListener implements Listener {
     	if (player.isSneaking()) {
 	    	if (player.hasPermission("sec.spawnerchange")) {
 	    		
-	    		event.setCancelled(true);
+	    		
 
 		    	if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && iih.getType() == Material.MONSTER_EGG && iih.getDurability() == 50) {
 		    		((CreatureSpawner)block.getState()).setSpawnedType(EntityType.CREEPER);
@@ -112,8 +112,10 @@ public class SECPlayerListener implements Listener {
 		    		((CreatureSpawner)block.getState()).setSpawnedType(EntityType.VILLAGER);
 		    		main.sendSpawnerMessage(player, "Villager");
 		    	}
-		    	if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-		    		block.getState().update();
+		    	if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && iih.getType() == Material.MONSTER_EGG) {
+		    		event.setCancelled(true);
+                                block.getState().update();
+                                
 		    	}
 	    	}
     	}
