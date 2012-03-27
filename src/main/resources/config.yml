@@ -1,0 +1,6 @@
+Global:
+  AmountOfSpawnerEggsYouNeed: 5
+Messages:
+  ChangeSpawner: '&2Spawnertype changed to %entity.'
+  NotEnoughSpawnerEggs: '&cYou dont have enough %entity Eggs.'
+  FailedSpawnerEggs: '&cFailed changing the spawner type!'

@@ -10,3 +10,6 @@ permissions:
     sec.spawnerchange:
         description: Allows you to change MobSpawner Type.
         default: op
+    sec.bypass:
+        description: Allows you to bypass the "AmountOfSpawnerEggsYouNeed" setting.
+        default: op
