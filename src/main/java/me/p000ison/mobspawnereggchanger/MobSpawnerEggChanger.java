@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +22,7 @@ public class MobSpawnerEggChanger extends JavaPlugin {
     private String SpawnerMesssage;
     private String NotEnoughSpawnerEggs;
     private String FailedSpawnerEggs;
+    private boolean perMobPermissions;
 
     @Override
     public void onDisable() {
@@ -65,6 +64,7 @@ public class MobSpawnerEggChanger extends JavaPlugin {
         SpawnerMesssage = config.getString("Messages.ChangeSpawner");
         NotEnoughSpawnerEggs = config.getString("Messages.NotEnoughSpawnerEggs");
         FailedSpawnerEggs = config.getString("Messages.FailedSpawnerEggs");
+        perMobPermissions = config.getBoolean("Global.perMobPermissions");
 
         save();
     }
@@ -75,10 +75,6 @@ public class MobSpawnerEggChanger extends JavaPlugin {
         } catch (IOException ex) {
             logger.log(Level.WARNING, "Saving the config failed!: " + ex.getMessage());
         }
-    }
-
-    public void sendSpawnerMessage(Player player, String entity) {
-        player.sendMessage(ChatColor.RED + "[MSEC]" + ChatColor.GRAY + entity);
     }
 
     /**
@@ -107,6 +103,14 @@ public class MobSpawnerEggChanger extends JavaPlugin {
      */
     public String getFailedSpawnerEggs() {
         return FailedSpawnerEggs;
+    }
+
+    /**
+     * @return the perMobPermissions
+     */
+    public boolean isPerMobPermissions()
+    {
+        return perMobPermissions;
     }
 }
 

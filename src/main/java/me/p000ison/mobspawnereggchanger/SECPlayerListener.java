@@ -13,17 +13,19 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class SECPlayerListener implements Listener {
+public class SECPlayerListener implements Listener
+{
 
     private MobSpawnerEggChanger plugin;
 
-    public SECPlayerListener(MobSpawnerEggChanger plugin) {
+    public SECPlayerListener(MobSpawnerEggChanger plugin)
+    {
         this.plugin = plugin;
     }
-    MobSpawnerEggChanger main = new MobSpawnerEggChanger();
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayerInteract(PlayerInteractEvent event) {
+    public void onPlayerInteract(PlayerInteractEvent event)
+    {
         Player player = event.getPlayer();
         ItemStack iih = event.getItem();
         Block block = event.getClickedBlock();
@@ -33,7 +35,14 @@ public class SECPlayerListener implements Listener {
                 if (player.hasPermission("sec.spawnerchange")) {
                     if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                         try {
-                            changeSpawer(iih.getDurability(), block, player, iih);
+                            if (plugin.isPerMobPermissions()) {
+                                if (player.hasPermission("sec.mob." + EntityType.fromId(iih.getDurability()).getName().toLowerCase())) {
+                                    changeSpawer(iih.getDurability(), block, player, iih);
+                                }
+                            } else {
+                                changeSpawer(iih.getDurability(), block, player, iih);
+                            }
+
                         } catch (Exception ex) {
                             player.sendMessage(color(plugin.getFailedSpawnerEggs(), (short) 0));
                         }
@@ -44,14 +53,16 @@ public class SECPlayerListener implements Listener {
         }
     }
 
-    public void changeSpawer(short dur, Block block, Player player, ItemStack iih) {
+    public void changeSpawer(short dur, Block block, Player player, ItemStack iih)
+    {
         if (dur != 0) {
             if (!player.hasPermission("sec.bypass")) {
                 if (iih.getType() == Material.MONSTER_EGG && iih.getAmount() >= plugin.getSpawnerEggs() && iih.getDurability() == dur) {
                     ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.fromId(dur));
                     player.sendMessage(color(plugin.getSpawnerMesssage(), dur).replace("%entity", EntityType.fromId(dur).toString()));
                     remove(player.getInventory(), new ItemStack(Material.MONSTER_EGG), plugin.getSpawnerEggs(), dur);
-                    update(block, player);
+                    block.getState().update();
+                    player.updateInventory();
                 } else {
                     player.sendMessage(color(plugin.getNotEnoughSpawnerEggs(), iih.getDurability()).replace("%entity", EntityType.fromId(dur).toString()));
                 }
@@ -59,18 +70,15 @@ public class SECPlayerListener implements Listener {
                 if (iih.getType() == Material.MONSTER_EGG) {
                     ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.fromId(dur));
                     player.sendMessage(color(plugin.getSpawnerMesssage(), dur).replace("%entity", EntityType.fromId(dur).toString()));
-                    update(block, player);
+                    block.getState().update();
+                    player.updateInventory();
                 }
             }
         }
     }
 
-    public void update(Block block, Player player) {
-        block.getState().update();
-        player.updateInventory();
-    }
-
-    public String color(String text, short dur) {
+    public String color(String text, short dur)
+    {
         String color = text.replaceAll("&(?=[0-9a-fA-FkK])", "\u00a7");
         return color;
     }
@@ -78,7 +86,8 @@ public class SECPlayerListener implements Listener {
     /**
      * @author Acrobot
      */
-    public static int remove(Inventory inv, ItemStack item, int amount, short durability) {
+    public static int remove(Inventory inv, ItemStack item, int amount, short durability)
+    {
         amount = (amount > 0 ? amount : 1);
         Material itemMaterial = item.getType();
 
@@ -115,16 +124,10 @@ public class SECPlayerListener implements Listener {
         return amount;
     }
 
-    private static boolean equals(ItemStack i, ItemStack item, short durability) {
+    private static boolean equals(ItemStack i, ItemStack item, short durability)
+    {
         return i != null
                 && i.getType() == item.getType()
                 && (durability == -1 || i.getDurability() == durability);
-    }
-
-    class LivingEntityExeption extends Exception {
-
-        public LivingEntityExeption(String ex) {
-            super(ex);
-        }
     }
 }

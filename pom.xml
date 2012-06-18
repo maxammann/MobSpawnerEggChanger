@@ -1,11 +1,12 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>me.p000ison</groupId>
     <artifactId>MobSpawnerEggChanger</artifactId>
-    <name>MobSpawnerEggChange</name>
-	<url>http://www.bukkit.org</url>
+    <name>MobSpawnerEggChanger</name>
+    <url>http://www.bukkit.org</url>
 
-	<build>
+    <build>
 		<!-- Resources -->
         <resources>
             <resource>
@@ -20,7 +21,7 @@
         </resources>
 		
 		<!-- Plugins -->
-		<plugins>        
+        <plugins>        
             <!-- Compilation plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -64,29 +65,49 @@
                     </archive>
                 </configuration>
             </plugin>
-		</plugins>
+        </plugins>
     </build>
     <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.2.3-R0.2</version>
+            <version>1.2.4-R1.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>minecraft-server</artifactId>
+            <version>1.2.4</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.14</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.9</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency> 
     </dependencies>
     <!-- Repositories -->
     <repositories>
         <repository>
-            <id>bukkit</id>
-            <name>bukkit</name>
-            <url>http://repo.bukkit.org/content/groups/public/</url>
+            <id>repobo-snap</id>
+            <url>http://repo.bukkit.org/content/groups/public</url>
         </repository>
     </repositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <version>0.1</version>
+    <version>1.6</version>
 </project>

@@ -5,7 +5,7 @@ main: me.p000ison.mobspawnereggchanger.MobSpawnerEggChanger
 name: MobSpawnerEggChanger
 startup: postworld
 url: http://dev.bukkit.org/server-mods/sec/
-version: '1.4'
+version: '1.5'
 permissions:
     sec.spawnerchange:
         description: Allows you to change MobSpawner Type.

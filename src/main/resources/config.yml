@@ -1,5 +1,6 @@
 Global:
   AmountOfSpawnerEggsYouNeed: 5
+  perMobPermissions: true
 Messages:
   ChangeSpawner: '&2Spawnertype changed to %entity.'
   NotEnoughSpawnerEggs: '&cYou dont have enough %entity Eggs.'
