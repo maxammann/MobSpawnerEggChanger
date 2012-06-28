@@ -10,110 +10,130 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class SECPlayerListener implements Listener {
+public class SECPlayerListener implements Listener
+{
+
+    private MobSpawnerEggChanger plugin;
+
+    public SECPlayerListener(MobSpawnerEggChanger plugin)
+    {
+        this.plugin = plugin;
+    }
 
     @EventHandler(priority = EventPriority.NORMAL)
-    public void onPlayerInteract(PlayerInteractEvent event) {
+    public void onPlayerInteract(PlayerInteractEvent event)
+    {
         Player player = event.getPlayer();
         ItemStack iih = event.getItem();
         Block block = event.getClickedBlock();
-        MobSpawnerEggChanger main = new MobSpawnerEggChanger();
 
-        if (iih != null && block != null && event.getAction() != null && block.getType() != null) {
-            if (player.isSneaking()) {
+        if (iih != null && block != null && event.getAction() != null) {
+        	if (player.isSneaking()) {
                 if (player.hasPermission("sec.spawnerchange")) {
-                    if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && iih.getType() == Material.MONSTER_EGG) {
-                        if (iih.getDurability() == 50) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.CREEPER);
-                            main.sendSpawnerMessage(player, "Creeper");
+                    if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                        try {
+                        	String type = EntityType.fromId(iih.getDurability()).getName().toLowerCase();
+                            
+                        	if (plugin.isPerMobPermissions()) {
+                                if (player.hasPermission("sec.mob." + type)) {
+                                    changeSpawner(block, player, iih);
+                                } else {
+                                	player.sendMessage("You don't have permission to do that!");
+                                }
+                            } else {
+                                changeSpawner(block, player, iih);
+                            }
+
+                        } catch (Exception ex) {
+                            player.sendMessage(color(plugin.getFailedSpawnerEggs(), (short) 0));
                         }
-                        if (iih.getDurability() == 51) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SKELETON);
-                            main.sendSpawnerMessage(player, "Skeleton");
-                        }
-                        if (iih.getDurability() == 52) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SPIDER);
-                            main.sendSpawnerMessage(player, "Spider");
-                        }
-                        if (iih.getDurability() == 54) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.ZOMBIE);
-                            main.sendSpawnerMessage(player, "Zombie");
-                        }
-                        if (iih.getDurability() == 55) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SLIME);
-                            main.sendSpawnerMessage(player, "Slime");
-                        }
-                        if (iih.getDurability() == 56) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.GHAST);
-                            main.sendSpawnerMessage(player, "Ghast");
-                        }
-                        if (iih.getDurability() == 57) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.PIG_ZOMBIE);
-                            main.sendSpawnerMessage(player, "Pig Zombie");
-                        }
-                        if (iih.getDurability() == 58) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.ENDERMAN);
-                            main.sendSpawnerMessage(player, "Enderman");
-                        }
-                        if (iih.getDurability() == 59) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.CAVE_SPIDER);
-                            main.sendSpawnerMessage(player, "Cave Spider");
-                        }
-                        if (iih.getDurability() == 60) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SILVERFISH);
-                            main.sendSpawnerMessage(player, "Silverfish");
-                        }
-                        if (iih.getDurability() == 61) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.BLAZE);
-                            main.sendSpawnerMessage(player, "Blaze");
-                        }
-                        if (iih.getDurability() == 62) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.MAGMA_CUBE);
-                            main.sendSpawnerMessage(player, "Magma Cube");
-                        }
-                        if (iih.getDurability() == 90) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.PIG);
-                            main.sendSpawnerMessage(player, "Pig");
-                        }
-                        if (iih.getDurability() == 91) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SHEEP);
-                            main.sendSpawnerMessage(player, "Sheep");
-                        }
-                        if (iih.getDurability() == 92) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.COW);
-                            main.sendSpawnerMessage(player, "Cow");
-                        }
-                        if (iih.getDurability() == 93) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.CHICKEN);
-                            main.sendSpawnerMessage(player, "Chicken");
-                        }
-                        if (iih.getDurability() == 94) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.SQUID);
-                            main.sendSpawnerMessage(player, "Squid");
-                        }
-                        if (iih.getDurability() == 95) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.WOLF);
-                            main.sendSpawnerMessage(player, "Wolf");
-                        }
-                        if (iih.getDurability() == 96) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.MUSHROOM_COW);
-                            main.sendSpawnerMessage(player, "Mushroom Cow");
-                        }
-                        if (iih.getDurability() == 98) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.OCELOT);
-                            main.sendSpawnerMessage(player, "Ocelot");
-                        }
-                        if (iih.getDurability() == 120) {
-                            ((CreatureSpawner) block.getState()).setSpawnedType(EntityType.VILLAGER);
-                            main.sendSpawnerMessage(player, "Villager");
-                        }
+                        
                         event.setCancelled(true);
-                        block.getState().update();
                     }
                 }
             }
         }
+    }
+
+    @SuppressWarnings("deprecation")
+	public void changeSpawner(Block block, Player player, ItemStack iih) {
+    	Short dur = iih.getDurability();
+    	EntityType type = EntityType.fromId(dur);
+    	String typename = type.getName().toLowerCase();
+    	boolean bypass = player.hasPermission("sec.bypass."+typename);
+    	
+        if (dur != 0) {
+            if (iih.getType() == Material.MONSTER_EGG) {
+            	if (bypass || iih.getAmount() >= plugin.getSpawnerEggs(typename)) {
+                    ((CreatureSpawner) block.getState()).setSpawnedType(type);
+                    player.sendMessage(color(plugin.getSpawnerMesssage(), dur).replace("%entity", typename));
+                    block.getState().update();
+                    
+                    if (!bypass) {
+	                    remove(player.getInventory(), new ItemStack(Material.MONSTER_EGG), plugin.getSpawnerEggs(typename), dur);
+	                    player.updateInventory();
+                    }
+            	} else {
+                    player.sendMessage(color(plugin.getNotEnoughSpawnerEggs(), iih.getDurability()).replace("%entity", EntityType.fromId(dur).toString()));
+                }  
+            }
+        }
+    }
+
+    public String color(String text, short dur)
+    {
+        String color = text.replaceAll("&(?=[0-9a-fA-FkK])", "\u00a7");
+        return color;
+    }
+
+    /**
+     * @author Acrobot
+     */
+    public static int remove(Inventory inv, ItemStack item, int amount, short durability)
+    {
+        amount = (amount > 0 ? amount : 1);
+        Material itemMaterial = item.getType();
+
+        int first = inv.first(itemMaterial);
+        if (first == -1) {
+            return amount;
+        }
+
+        for (int slot = first; slot < inv.getSize(); slot++) {
+            if (amount <= 0) {
+                return 0;
+            }
+
+            ItemStack currentItem = inv.getItem(slot);
+            if (currentItem == null || currentItem.getType() == Material.AIR) {
+                continue;
+            }
+
+            if (equals(currentItem, item, durability)) {
+                int currentAmount = currentItem.getAmount();
+                if (amount == currentAmount) {
+                    currentItem = null;
+                    amount = 0;
+                } else if (amount < currentAmount) {
+                    currentItem.setAmount(currentAmount - amount);
+                    amount = 0;
+                } else {
+                    currentItem = null;
+                    amount -= currentAmount;
+                }
+                inv.setItem(slot, currentItem);
+            }
+        }
+        return amount;
+    }
+
+    private static boolean equals(ItemStack i, ItemStack item, short durability)
+    {
+        return i != null
+                && i.getType() == item.getType()
+                && (durability == -1 || i.getDurability() == durability);
     }
 }
