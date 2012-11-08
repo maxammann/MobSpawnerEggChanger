@@ -43,26 +43,6 @@
                 <version>2.3.2</version>				
                 <configuration>
                     <outputDirectory>${basedir}/out/</outputDirectory>
-                    <archive>
-                        <manifestEntries>
-                            <Implementation-Title>${project.name}</Implementation-Title>
-                            <Implementation-Version>${describe}</Implementation-Version>
-                            <Implementation-Vendor>TropicalDreamZ</Implementation-Vendor>
-                            
-                            <Specification-Title>${project.name}</Specification-Title>
-                            <Specification-Version>${version.number}</Specification-Version>
-                            <Specification-Vendor>TropicalDreamZ</Specification-Vendor>
-                            <Sealed>true</Sealed>
-                        </manifestEntries>
-                        <manifestSections>
-                            <manifestSection>
-                                <name>me/p000ison/MobSpawnerEggChanger/</name>
-                                <manifestEntries>
-                                    <Sealed>true</Sealed>
-                                </manifestEntries>
-                            </manifestSection>
-                        </manifestSections>
-                    </archive>
                 </configuration>
             </plugin>
         </plugins>
@@ -72,36 +52,16 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.2.4-R1.1-SNAPSHOT</version>
+            <version>1.4.2-R0.2-SNAPSHOT</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>minecraft-server</artifactId>
-            <version>1.2.4</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.14</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.9</version>
-            <type>jar</type>
-            <scope>provided</scope>
-        </dependency> 
     </dependencies>
+
     <!-- Repositories -->
     <repositories>
         <repository>
-            <id>repobo-snap</id>
+            <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
         </repository>
     </repositories>

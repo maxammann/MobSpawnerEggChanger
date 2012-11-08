@@ -8,6 +8,6 @@ Global:
     skeleton: 1
   perMobPermissions: true
 Messages:
-  ChangeSpawner: '&2Spawnertype changed to %entity.'
+  ChangeSpawner: '&2Spawnertype changed to %entity. Reconnect to see the change!'
   NotEnoughSpawnerEggs: '&cYou dont have enough %entity Eggs.'
   FailedSpawnerEggs: '&cFailed changing the spawner type!'
