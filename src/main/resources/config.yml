@@ -1,12 +1,12 @@
 Global:
-  DefaultAmountOfSpawnerEggsYouNeed: 5
+  DefaultAmountOfSpawnerEggsYouNeed: 0
   # Entries under here must be lowercase.
   # Entries omitted from here will have the default
   # specified above.
   AmountOfSpawnerEggsYouNeed:
     creeper: 10
     skeleton: 1
-  perMobPermissions: true
+  perMobPermissions: false
 Messages:
   ChangeSpawner: '&2Spawnertype changed to %entity. Reconnect to see the change!'
   NotEnoughSpawnerEggs: '&cYou dont have enough %entity Eggs.'

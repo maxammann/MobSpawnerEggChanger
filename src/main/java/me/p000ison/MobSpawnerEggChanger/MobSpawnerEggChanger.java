@@ -14,7 +14,6 @@ import java.util.logging.Level;
  */
 public class MobSpawnerEggChanger extends JavaPlugin {
 
-    private FileConfiguration config;
     private String SpawnerMesssage;
     private String NotEnoughSpawnerEggs;
     private String FailedSpawnerEggs;
@@ -61,8 +60,7 @@ public class MobSpawnerEggChanger extends JavaPlugin {
      */
     public int getSpawnerEggs(String typename)
     {
-        return config.getInt("Global.AmountOfSpawnerEggsYouNeed." + typename.toLowerCase(),
-                config.getInt("Global.DefaultAmountOfSpawnerEggsYouNeed"));
+        return getConfig().getInt("Global.AmountOfSpawnerEggsYouNeed." + typename.toLowerCase(), getConfig().getInt("Global.DefaultAmountOfSpawnerEggsYouNeed"));
     }
 
     /**

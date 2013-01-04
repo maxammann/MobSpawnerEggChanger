@@ -63,7 +63,7 @@ public class SECPlayerListener implements Listener {
         Short dur = iih.getDurability();
         EntityType type = EntityType.fromId(dur);
         String typename = type.getName().toLowerCase();
-        boolean bypass = player.hasPermission("sec.bypass." + typename);
+        boolean bypass = player.hasPermission("sec.bypass." + typename) || player.hasPermission("sec.bypass.*");
 
         if (dur != 0) {
             if (iih.getType() == Material.MONSTER_EGG) {
