@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -77,7 +78,8 @@ public class MetricsLite {
      * backend, and then after that it will post in increments of PING_INTERVAL
      * * 1200 ticks.
      */
-    public void start() {
+    @SuppressWarnings("deprecation")
+	public void start() {
         // Did we opt out?
         if (configuration.getBoolean("opt-out", false)) {
             return;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="lib" path="out/MobSpawnerEggChanger-1.0.jar"/>
+	<classpathentry kind="lib" path="out/MobSpawnerEggChanger-1.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Max/Documents/GitHub/bukkit-1.6.4-R0.1-20131021.003018-11.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
