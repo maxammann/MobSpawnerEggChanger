@@ -4,10 +4,7 @@
     <groupId>me.p000ison</groupId>
     <artifactId>MobSpawnerEggChanger</artifactId>
     <name>MobSpawnerEggChanger</name>
-    <url>http://www.bukkit.org</url>
-
     <build>
-		<!-- Resources -->
         <resources>
             <resource>
                 <targetPath>.</targetPath>
@@ -19,10 +16,7 @@
                 </includes>
             </resource>
         </resources>
-		
-		<!-- Plugins -->
         <plugins>        
-            <!-- Compilation plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -35,8 +29,6 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
-            
-			<!-- JAR creation plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -47,18 +39,15 @@
             </plugin>
         </plugins>
     </build>
-    <!-- Dependencies -->
     <dependencies>
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.4.2-R0.2-SNAPSHOT</version>
+            <version>LATEST</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
     </dependencies>
-
-    <!-- Repositories -->
     <repositories>
         <repository>
             <id>bukkit-repo</id>
@@ -69,5 +58,5 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <version>1.6</version>
+    <version>1.6.1</version>
 </project>

@@ -34,7 +34,8 @@ public class SECPlayerListener implements Listener {
                 if (player.hasPermission("sec.spawnerchange")) {
                     if (block.getType() == Material.MOB_SPAWNER && event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                         try {
-                            String type = EntityType.fromId(iih.getDurability()).getName().toLowerCase();
+                            @SuppressWarnings("deprecation")
+							String type = EntityType.fromId(iih.getDurability()).getName().toLowerCase();
 
                             if (plugin.isPerMobPermissions()) {
                                 if (player.hasPermission("sec.mob." + type)) {
